@@ -1,0 +1,19 @@
+{
+  "name": "traduora-sync",
+  "version": "0.0.0",
+  "description": "Traduora translation synchronizer",
+  "main": "src/main.ts",
+  "author": "Chan Nyein Thaw (chanyeinthaw@gmail.com)",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.7",
+    "typescript": "^4.8.4"
+  },
+  "bin": {
+    "traduora-sync": "./build/main.js"
+  }
+}
