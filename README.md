@@ -1,4 +1,4 @@
-# Traduora-sync
+# Translation-sync
 
 Traduora translation synchronizer
 
