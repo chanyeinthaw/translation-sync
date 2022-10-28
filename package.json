@@ -1,5 +1,5 @@
 {
-  "name": "traduora-sync",
+  "name": "translation-sync",
   "version": "0.0.0",
   "description": "Traduora translation synchronizer",
   "main": "build/main.js",
@@ -17,7 +17,7 @@
     "axios": "^1.1.3"
   },
   "bin": {
-    "traduora-sync": "./build/main.js"
+    "translation-sync": "./build/main.js"
   },
   "dependencies": {
     "@types/yaml": "^1.9.7",
