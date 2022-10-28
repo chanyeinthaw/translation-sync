@@ -1,8 +1,11 @@
 {
   "name": "translation-sync",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Traduora translation synchronizer",
   "main": "build/main.js",
+  "files": [
+    "build/**/*.js"
+  ],
   "author": "Chan Nyein Thaw (chanyeinthaw@gmail.com)",
   "license": "MIT",
   "scripts": {
