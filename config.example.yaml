@@ -1,0 +1,10 @@
+host: traduora-host
+
+projectId: project-id
+clientId: client-id
+clientSecret: client-secret
+
+locales:
+  - ja_JP
+
+outputDir: messages
