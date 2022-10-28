@@ -6,8 +6,8 @@ Traduora translation synchronizer
 
 Initialization of config file
 
-`npx traduora-sync init`
+`npx translation-sync init`
 
 Synchronization
 
-`npx tradoura-sync`
+`npx translation-sync`
