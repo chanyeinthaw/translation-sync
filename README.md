@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> Discontinued!! Use [traduora-export](https://github.com/chanyeinthaw/traduora-export)
+
 # Translation-sync
 
 Traduora translation synchronizer
