@@ -48,13 +48,11 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
           const response = yield* client.execute(request)
 
           if (response.status !== 200) {
-            return yield* Effect.fail(
-              new TraduoraError({
-                type: 'FailedToAuthenticate',
-                statusCode: response.status,
-                responseContent: yield* response.text,
-              })
-            )
+            return yield* new TraduoraError({
+              type: 'FailedToAuthenticate',
+              statusCode: response.status,
+              responseContent: yield* response.text,
+            })
           }
 
           const responseResult = yield* pipe(
@@ -64,13 +62,11 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
           )
 
           if (Either.isLeft(responseResult))
-            return yield* Effect.fail(
-              new TraduoraError({
-                type: 'InvalidAuthResponse',
-                statusCode: response.status,
-                responseContent: yield* response.text,
-              })
-            )
+            return yield* new TraduoraError({
+              type: 'InvalidAuthResponse',
+              statusCode: response.status,
+              responseContent: yield* response.text,
+            })
 
           yield* Ref.set(accessToken, responseResult.right.access_token)
         }),
@@ -87,13 +83,11 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
           )
           const response = yield* client.execute(request)
           if (response.status !== 200)
-            return yield* Effect.fail(
-              new TraduoraError({
-                type: 'FailedToValidate',
-                statusCode: response.status,
-                responseContent: yield* response.text,
-              })
-            )
+            return yield* new TraduoraError({
+              type: 'FailedToValidate',
+              statusCode: response.status,
+              responseContent: yield* response.text,
+            })
 
           const responseResult = yield* pipe(
             response,
@@ -102,13 +96,11 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
           )
 
           if (Either.isLeft(responseResult))
-            return yield* Effect.fail(
-              new TraduoraError({
-                type: 'InvalidTranslationsResponse',
-                statusCode: response.status,
-                responseContent: yield* response.text,
-              })
-            )
+            return yield* new TraduoraError({
+              type: 'InvalidTranslationsResponse',
+              statusCode: response.status,
+              responseContent: yield* response.text,
+            })
 
           const availableLocales = responseResult.right.data.map(
             (ts) => ts.locale.code
@@ -119,12 +111,10 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
 
           if (!hasInvalidLocales) return
 
-          return yield* Effect.fail(
-            new TraduoraError({
-              type: 'InvalidLocales',
-              responseContent: availableLocales.join(', '),
-            })
-          )
+          return yield* new TraduoraError({
+            type: 'InvalidLocales',
+            responseContent: availableLocales.join(', '),
+          })
         }),
 
         downloadLocales: Effect.gen(function* () {

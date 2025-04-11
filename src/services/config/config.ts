@@ -67,14 +67,12 @@ export class ConfigService extends Effect.Service<ConfigService>()('Config', {
         Effect.gen(function* () {
           const exists = yield* fs.exists(path)
           if (!exists)
-            return yield* Effect.fail(
-              new ConfigError({
-                type: 'LoadError',
-                options: {
-                  path,
-                },
-              })
-            )
+            return yield* new ConfigError({
+              type: 'LoadError',
+              options: {
+                path,
+              },
+            })
 
           const contents = (yield* fs.readFile(path)).toString()
           const parsedConfig = yield* Config.parse(contents)
@@ -87,11 +85,9 @@ export class ConfigService extends Effect.Service<ConfigService>()('Config', {
         const value = yield* Ref.get(config)
 
         if (value === null) {
-          return yield* Effect.fail(
-            new ConfigError({
-              type: 'NotLoaded',
-            })
-          )
+          return yield* new ConfigError({
+            type: 'NotLoaded',
+          })
         }
 
         return value
