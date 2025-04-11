@@ -1,8 +1,8 @@
-import { CONFIG_FILE_NAME } from '@/constants.js'
-import { Config } from '@/services/config/config.js'
 import { Command, Options } from '@effect/cli'
 import { FileSystem } from '@effect/platform'
 import { Console, Effect, Schema } from 'effect'
+import { CONFIG_FILE_NAME } from '../constants.js'
+import { Config } from '../services/config/config.js'
 
 const options = {
   host: Options.text('host')

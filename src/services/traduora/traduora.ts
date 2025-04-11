@@ -1,9 +1,3 @@
-import { ConfigService } from '@/services/config/config.js'
-import { TraduoraError } from '@/services/traduora/errors.js'
-import {
-  AuthResponse,
-  TranslationsResponse,
-} from '@/services/traduora/schema.js'
 import {
   FetchHttpClient,
   FileSystem,
@@ -14,6 +8,9 @@ import {
 import { NodeContext } from '@effect/platform-node'
 import { Effect, Either, pipe, Ref, SynchronizedRef } from 'effect'
 import path from 'path'
+import { ConfigService } from '../config/config.js'
+import { TraduoraError } from './errors.js'
+import { AuthResponse, TranslationsResponse } from './schema.js'
 
 export class TraduoraService extends Effect.Service<TraduoraService>()(
   'TraduoraSevice',

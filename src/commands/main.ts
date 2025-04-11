@@ -1,9 +1,9 @@
-import { init } from '@/commands/init.js'
-import { CONFIG_FILE_NAME } from '@/constants.js'
-import { ConfigService } from '@/services/config/config.js'
-import { TraduoraService } from '@/services/traduora/traduora.js'
 import { Command, Options } from '@effect/cli'
 import { Console, Effect, pipe } from 'effect'
+import { CONFIG_FILE_NAME } from '../constants.js'
+import { ConfigService } from '../services/config/config.js'
+import { TraduoraService } from '../services/traduora/traduora.js'
+import { init } from './init.js'
 
 const configPath = Options.file('config', {
   exists: 'yes',

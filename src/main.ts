@@ -1,9 +1,9 @@
-import { command } from '@/commands/main.js'
-import { ConfigService } from '@/services/config/config.js'
-import { TraduoraService } from '@/services/traduora/traduora.js'
 import { Command } from '@effect/cli'
 import { NodeContext, NodeRuntime } from '@effect/platform-node'
 import { Console, Effect, Layer, pipe } from 'effect'
+import { command } from './commands/main.js'
+import { ConfigService } from './services/config/config.js'
+import { TraduoraService } from './services/traduora/traduora.js'
 
 const cli = Command.run(command, {
   name: 'Translation Sync',
