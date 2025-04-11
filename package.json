@@ -1,6 +1,6 @@
 {
   "name": "traduora-export",
-  "version": "1000.0.0",
+  "version": "1000.0.1",
   "type": "module",
   "description": "Traduora i18n messages exporter",
   "main": "build/main.js",

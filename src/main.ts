@@ -7,7 +7,7 @@ import { TraduoraService } from './services/traduora/traduora.js'
 
 const cli = Command.run(command, {
   name: 'Translation Sync',
-  version: 'v1000.0.0',
+  version: 'v1000.0.1',
 })
 
 const program = pipe(
