@@ -1,0 +1,11 @@
+host: https://translations.oneterrace.jp
+
+projectId: 47ab3f9f-ead6-4c43-b353-4137048c2c54
+clientId: 5a6cb9b4-f307-48f7-97ef-5b6b5e5d6ce9
+clientSecret: A6M6WwcWlSa3a5W85ed5vPBcRLLsNNLQ
+
+locales:
+  - ja
+  - en
+
+outputDir: messages
