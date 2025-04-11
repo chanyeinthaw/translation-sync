@@ -1,1 +1,1 @@
-export const CONFIG_FILE_NAME = 'translation-sync.yaml'
+export const CONFIG_FILE_NAME = 'traduora-export.yaml'

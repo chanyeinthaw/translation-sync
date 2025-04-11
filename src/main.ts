@@ -25,11 +25,11 @@ const program = pipe(
   Effect.catchTag('TraduoraError', (e) => {
     switch (e.type) {
       case 'FailedToAuthenticate':
-        return Console.error('Failed to authenticate with Traduora. status:')
+        return Console.error('Failed to authenticate with Traduora.')
       case 'FailedToValidate':
         return Console.error('Failed to validate locales.')
       case 'InvalidLocales':
-        return Console.error('Invalid locales')
+        return Console.error('Invalid locales. Available:', e.responseContent)
       case 'InvalidAuthResponse':
         return Console.error('Invalid auth response: ', e.responseContent)
       case 'InvalidTranslationsResponse':

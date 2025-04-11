@@ -10,31 +10,25 @@ const configPath = Options.file('config', {
 })
   .pipe(
     Options.withDescription(
-      'Path to config file. Defaults to translation-sync.yaml'
+      'Path to config file. Defaults to traduora-export.yaml'
     )
   )
   .pipe(Options.withAlias('c'))
   .pipe(Options.withDefault(CONFIG_FILE_NAME))
 
-const main = Command.make(
-  'translation-sync',
-  { configPath },
-  ({ configPath }) =>
-    Effect.gen(function* () {
-      const configService = yield* ConfigService
-      yield* configService.load(configPath)
+const main = Command.make('traduora-export', { configPath }, ({ configPath }) =>
+  Effect.gen(function* () {
+    const configService = yield* ConfigService
+    yield* configService.load(configPath)
 
-      const traduora = yield* TraduoraService
-      yield* traduora.authenticate
-      yield* traduora.validateLocales
+    const traduora = yield* TraduoraService
+    yield* traduora.authenticate
+    yield* traduora.validateLocales
 
-      yield* pipe(
-        traduora.downloadLocales,
-        Effect.flatMap(traduora.writeLocales)
-      )
+    yield* pipe(traduora.downloadLocales, Effect.flatMap(traduora.writeLocales))
 
-      yield* Console.log('Translations synced successfully!')
-    })
+    yield* Console.log('Translations synced successfully!')
+  })
 )
 
 export const command = main.pipe(Command.withSubcommands([init]))

@@ -1,16 +1,13 @@
-> [!IMPORTANT]  
-> Discontinued!! Use [traduora-export](https://github.com/chanyeinthaw/traduora-export)
+# traduora-export
 
-# Translation-sync
-
-Traduora translation synchronizer
+Traduora i18n messages exporter.
 
 ## Usage
 
 Initialization of config file
 
-`npx translation-sync init`
+`npx traduora-export init --wizard`
 
 Synchronization
 
-`npx translation-sync`
+`npx traduora-export`

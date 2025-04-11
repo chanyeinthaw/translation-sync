@@ -125,6 +125,7 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
           return yield* Effect.fail(
             new TraduoraError({
               type: 'InvalidLocales',
+              responseContent: availableLocales.join(', '),
             })
           )
         }),
