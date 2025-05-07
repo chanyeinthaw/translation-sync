@@ -8,7 +8,7 @@ import {
 import { NodeContext } from '@effect/platform-node'
 import { Effect, Either, pipe, Ref, SynchronizedRef } from 'effect'
 import path from 'path'
-import { ConfigService } from '../config/config.js'
+import { type Config, ConfigService } from '../config/config.js'
 import { TraduoraError } from './errors.js'
 import { AuthResponse, TranslationsResponse } from './schema.js'
 
@@ -161,16 +161,8 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
               yield* fs.makeDirectory(config.outputDir)
 
             const effects = []
-            for (const [locale, content] of locales.entries()) {
-              effects.push(
-                fs.writeFileString(
-                  path.join(config.outputDir, `${locale}.json`),
-                  JSON.stringify(content, null, 2),
-                  {
-                    flag: 'w',
-                  }
-                )
-              )
+            for (const entry of locales.entries()) {
+              effects.push(writeContent(entry, config, fs))
             }
 
             yield* Effect.all(effects, {
@@ -182,6 +174,29 @@ export class TraduoraService extends Effect.Service<TraduoraService>()(
     dependencies: [NodeContext.layer, FetchHttpClient.layer],
   }
 ) {}
+
+function writeContent(
+  [locale, content]: [string, unknown],
+  config: Config,
+  fs: FileSystem.FileSystem
+) {
+  return Effect.gen(function* () {
+    let contentString = JSON.stringify(content, null, 2)
+
+    switch (config.outputFormat) {
+      case 'ts':
+        contentString = `export default ${contentString} as const`
+    }
+
+    return yield* fs.writeFileString(
+      path.join(config.outputDir, `${locale}.${config.outputFormat}`),
+      contentString,
+      {
+        flag: 'w',
+      }
+    )
+  })
+}
 
 function downloadLocale(
   client: HttpClient.HttpClient,

@@ -12,6 +12,12 @@ export class Config extends Schema.Class<Config>('Config')({
 
   locales: Schema.Array(Schema.NonEmptyString),
   outputDir: Schema.NonEmptyString,
+
+  outputFormat: Schema.Union(Schema.Literal('ts'), Schema.Literal('json')).pipe(
+    Schema.optionalWith({
+      default: () => 'json',
+    })
+  ),
 }) {
   static parse(contents: string) {
     return Effect.gen(function* () {
